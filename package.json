@@ -2,10 +2,15 @@
   "name": "computer-parts-store-admin",
   "version": "1.0.0",
   "description": "This is the Admin Page for a fictional computer parts store where the product inventory can be managed.",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js"
   },
+  "keywords": [
+    "computer",
+    "parts",
+    "store"
+  ],
   "author": "Dakota Riley",
   "license": "MIT",
   "dependencies": {
