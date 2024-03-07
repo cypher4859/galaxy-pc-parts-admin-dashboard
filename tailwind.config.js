@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./views/**/*.{html,js,ejs}', './views/**/*.{html,js,ejs}'],
+  content: ['./src/**/*.{html,js}', './views/**/*.{html,js,ejs}', './views/**/*.{html,js,ejs}'],
+  mode: 'jit',
   theme: {
     extend: {},
   },
