@@ -1,7 +1,6 @@
-// server.js
+// src/server.js
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,14 +8,22 @@ const PORT = process.env.PORT || 3000;
 // Connect to MongoDB (make sure MongoDB is running)
 mongoose.connect('mongodb://localhost/computer-parts-store');
 
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+
+// Use express-ejs-layouts middleware
+app.use(expressLayouts);
+
+// Set the layout file (views/layout.ejs)
+app.set('layout', 'layouts/layout');
+
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static('public'));
 
 // Set up basic route
 app.get('/', (req, res) => {
-  const indexPath = path.join(__dirname, '..', 'views', 'index.html');
-  const indexContent = fs.readFileSync(indexPath, 'utf8');
-  res.send(indexContent);
+  // Render the index.ejs file with the specified layout
+  res.render('index', { title: 'Computer Parts Store' });
 });
 
 // Start the server

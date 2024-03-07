@@ -1,4 +1,4 @@
-// main.js
+// public/main.js
 document.addEventListener('DOMContentLoaded', function () {
   // Sample data (Replace with data from your database)
   const products = [
