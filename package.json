@@ -5,7 +5,8 @@
   "main": "src/server.js",
   "scripts": {
     "tailwind": "postcss public/tailwind.css -o public/styles.css",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "devstart": "nodemon src/server.js"
   },
   "keywords": [
     "computer",
