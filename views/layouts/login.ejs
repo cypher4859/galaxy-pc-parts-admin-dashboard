@@ -1,0 +1,21 @@
+<!-- views/layouts/login.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Include your main stylesheet -->
+    <link rel="stylesheet" href="/css/tailwind.css"> <!-- Include Tailwind CSS -->
+    <link rel="stylesheet" href="/css/main.css"> <!-- Include other styles -->
+    <title>Computer Parts Store Login</title>
+</head>
+<body>
+    <div class="login-container bg-blue-900 flex w-screen h-screen justify-center items-center">
+        <div class="card bg-white w-10/12 rounded-lg text-center shadow-2xl">
+            <div class="card-content p-2 px-4">
+                <%- body %> <!-- Content from individual views will be inserted here -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
