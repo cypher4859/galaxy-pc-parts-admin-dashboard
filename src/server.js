@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Import routers
+const indexRouter = require('./router/index'); // Import the index router
+
 // Connect to MongoDB (make sure MongoDB is running)
 mongoose.connect('mongodb://localhost/computer-parts-store');
 
@@ -20,11 +23,8 @@ app.set('layout', 'layouts/layout');
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
-// Set up basic route
-app.get('/', (req, res) => {
-  // Render the index.ejs file with the specified layout
-  res.render('index', { title: 'Computer Parts Store' });
-});
+// Use the index router
+app.use('/', indexRouter);
 
 // Start the server
 app.listen(PORT, () => {
