@@ -20,4 +20,10 @@ router.get('/dashboard', ensureAuth, (req, res) => {
   });
 });
 
+// @desc    Products
+// @route   GET /products
+router.get('/products', ensureAuth, (req, res) => {
+  res.render('products');
+});
+
 module.exports = router;
