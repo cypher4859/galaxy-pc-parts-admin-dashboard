@@ -9,9 +9,11 @@
     <title>Computer Parts Store Test</title>
 </head>
 <body>
-    <%- include('../partials/_header') %>
     <div class="container">
-        <%- body %> <!-- Content from individual views will be inserted here -->
+        <div class="bg-blue-900 min-h-screen w-screen flex">
+            <%- include('../partials/_nav') %>
+            <%- body %> <!-- Content from individual views will be inserted here -->
+        </div>
     </div>
 </body>
 </html>
