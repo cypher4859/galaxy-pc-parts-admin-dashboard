@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css"> <!-- Include your main stylesheet -->
-    <link rel="stylesheet" href="/css/tailwind.css"> <!-- Include Tailwind CSS -->
+    <link rel="stylesheet" href="/css/globals.css"> <!-- Include your main stylesheet and import Tailwind CSS -->
+    <link rel="stylesheet" href="/css/tailwind.css"> <!-- Tailwind CSS Styles -->
     <title>Computer Parts Store Test</title>
 </head>
 <body>
     <div class="container">
         <div class="bg-blue-900 min-h-screen w-screen flex">
             <%- include('../partials/_nav') %>
-            <%- body %> <!-- Content from individual views will be inserted here -->
+            <div class="bg-white flex-grow mt-2 mr-2 mb-2 rounded-lg p-4">
+                <%- body %> <!-- Content from individual views will be inserted here -->
+                <%- include('../partials/_errorMessage') %>
+            </div>
         </div>
     </div>
 </body>

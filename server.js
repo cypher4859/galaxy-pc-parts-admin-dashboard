@@ -9,6 +9,8 @@ const passport = require('passport');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const connectDB = require('./config/db');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 // Load Config
 dotenv.config({ path: './config/config.env' });
@@ -58,13 +60,20 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Method Override Middleware
+app.use(methodOverride('_method'));
+
 // Serve folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Use Body Parser
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
 // Routes
 // Index router
 app.use('/', require('./router/index'));
 app.use('/auth', require('./router/auth'));
+app.use('/products', require('./router/products'));
 
 const PORT = process.env.PORT || 3000;
 

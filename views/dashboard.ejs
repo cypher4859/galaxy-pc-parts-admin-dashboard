@@ -1,2 +1,11 @@
 <!-- views/dashboard.ejs -->
-<div class="bg-white flex-grow mt-2 mr-2 mb-2 rounded-lg p-4">Welcome <%= name %> </div>
+
+<div class=" text-blue-900 flex justify-between">
+  <h1>
+    Hello, <span class="font-bold"><%= user.displayName %></span>
+  </h1>
+  <div class="flex bg-gray-300 text-black gap-1 rounded-lg overflow-hidden h-6">
+    <img src="<%= user.image %>" alt="" class="w-6 h-6">
+    <span class="px-2"><%= user.displayName %></span>
+  </div>
+</div>

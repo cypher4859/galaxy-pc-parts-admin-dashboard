@@ -4,7 +4,7 @@
   "description": "This is the Admin Page for a fictional computer parts store where the product inventory can be managed.",
   "main": "server.js",
   "scripts": {
-    "build:tailwind": "postcss public/css/tailwind.css -o public/css/styles.css",
+    "build:tailwind": "postcss public/css/globals.css -o public/css/tailwind.css",
     "start": "cross-env NODE_ENV=production node server.js",
     "dev": "cross-env NODE_ENV=development nodemon server.js"
   },
@@ -16,6 +16,7 @@
   "author": "Dakota Riley",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "connect-mongodb-session": "^5.0.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
