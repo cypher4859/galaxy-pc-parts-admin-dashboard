@@ -18,6 +18,7 @@
     <div>
       No photos in this product.
     </div>
+    <div class="mt-2" id="imageContainer"></div>
   <% } else { %>
     <div class="mt-2" id="imageContainer">
       <% product.images.forEach(image => { %>
@@ -43,13 +44,13 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOMContentLoaded event triggered.'); // Add this line
+    console.log('DOMContentLoaded event triggered.');
     const fileInput = document.getElementById('photos');
     const imagePaths = [];
 
     fileInput.addEventListener('change', function(event) {
       const files = event.target.files;
-      const imageContainer = document.getElementById('imageContainer'); // Ensure imageContainer is defined
+      const imageContainer = document.getElementById('imageContainer'); 
       console.log('Files selected:', files);
 
       for (let i = 0; i < files.length; i++) {

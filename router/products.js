@@ -95,8 +95,8 @@ router.put('/:id', upload.array('photos', 5), ensureAuth, async (req, res) => {
     product.name = req.body.name;
     product.description = req.body.description;
     product.price = req.body.price;
-    (product.images = req.files.map((file) => file.path)), // Save file paths in the images array
-      await product.save();
+    product.images = req.files.map((file) => file.path); // Save file paths in the images array
+    await product.save();
     res.redirect(`/products`);
   } catch (err) {
     if (product == null) {
