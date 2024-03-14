@@ -8,7 +8,7 @@ Users have to authenticate with a Google account to view the backend, and once a
 
 ### Please Note
 
-I am aware that the Google ClientID and Client Secret are visible in the code and that this is typically frowned upon. This is currently required to function and for the purposes of this project will remain as part of code. I would like to continue with this project after class ends and will likely move this over to a hosting service so that I can hide the ENV file and make it easier for anyone to view this in the future.
+I am aware that the Google Client ID and Client Secret are visible in the code and that this is typically frowned upon. This is currently required to function and for the purposes of this project will remain as part of the code. I would like to continue with this project after class ends and will likely move this over to a hosting service so that I can hide the ENV file and make it easier for anyone to view this project without locally hosting it in the future.
 
 ## 🛠 To run locally:
 

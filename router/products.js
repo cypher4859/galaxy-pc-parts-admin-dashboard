@@ -4,6 +4,7 @@ const router = express.Router();
 const { ensureAuth } = require('../middleware/auth');
 const Product = require('../models/Product');
 const multer = require('multer');
+const fs = require('fs');
 const path = require('path');
 
 // Define storage for uploaded images
@@ -39,7 +40,7 @@ router.get('/new', ensureAuth, (req, res) => {
 
 // @desc    Create Product
 // @route   POST products/
-router.post('/', upload.array('photos', 5), async (req, res) => {
+router.post('/', upload.array('photos', 5), ensureAuth, async (req, res) => {
   const product = new Product({
     name: req.body.name,
     description: req.body.description,
@@ -87,14 +88,15 @@ router.get('/delete/:id', ensureAuth, async (req, res) => {
 
 // @desc    Update Products
 // @route   PUT products/:id
-router.put('/:id', ensureAuth, async (req, res) => {
+router.put('/:id', upload.array('photos', 5), ensureAuth, async (req, res) => {
   let product;
   try {
     product = await Product.findById(req.params.id);
     product.name = req.body.name;
     product.description = req.body.description;
     product.price = req.body.price;
-    await product.save();
+    (product.images = req.files.map((file) => file.path)), // Save file paths in the images array
+      await product.save();
     res.redirect(`/products`);
   } catch (err) {
     if (product == null) {
@@ -126,6 +128,30 @@ router.delete('/delete/:id', ensureAuth, async (req, res) => {
       });
     }
   }
+});
+
+// @desc    Delete Product Images
+// @route   DELETE /delete-image/:filename
+router.delete('/delete-image/:filename', (req, res) => {
+  const filename = req.params.filename;
+  const imagePath = path.join(__dirname, 'public', 'uploads', filename);
+
+  // Check if the file exists
+  fs.access(imagePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      console.error('Error accessing image file:', err);
+      return res.status(404).send('Image not found');
+    }
+
+    // Delete the file
+    fs.unlink(imagePath, (err) => {
+      if (err) {
+        console.error('Error deleting image file:', err);
+        return res.status(500).send('Error deleting image');
+      }
+      res.send('Image deleted successfully');
+    });
+  });
 });
 
 module.exports = router;

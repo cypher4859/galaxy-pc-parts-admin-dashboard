@@ -65,6 +65,7 @@ app.use(methodOverride('_method'));
 
 // Serve folder
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public/uploads'));
 
 // Use Body Parser
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
