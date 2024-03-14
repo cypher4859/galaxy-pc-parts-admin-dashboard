@@ -1,6 +1,14 @@
 # Computer Parts Store (Admin Page)
 
-## This is the Admin Page for a fictional computer parts store where the product inventory can be managed.
+## About
+
+This repository is the backend half of a 2-part project for a fictional computer parts online store. I have used NodeJS with Express, VanillaJS with EJS Templating, Mongo DB, and TailwindCSS to create a management interface for store.
+
+Users have to authenticate with a Google account to view the backend, and once authenticated, they have the ability to add, manage, and remove products and categories and track order information.
+
+### Please Note
+
+I am aware that the Google ClientID and Client Secret are visible in the code and that this is typically frowned upon. This is currently required to function and for the purposes of this project will remain as part of code. I would like to continue with this project after class ends and will likely move this over to a hosting service so that I can hide the ENV file and make it easier for anyone to view this in the future.
 
 ## 🛠 To run locally:
 
@@ -14,7 +22,7 @@
 
 3. Once NodeJS has installed, exit your Terminal or Command Prompt so the NodeJS CLI can start to work.
 
-4. Reopen your Terminal or Command Prompt and use it to move into the directory with the product. Replace "path" with the path where you cloned the project.
+4. Reopen your Terminal or Command Prompt and use it to move into the directory with the product. Replace ## "path" ## with the path where you cloned the project.
 
 ```sh
    cd "path"/computer-parts-store-admin/
