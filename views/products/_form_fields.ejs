@@ -1,9 +1,49 @@
 <!-- views/products/_form_fields.ejs -->
+
 <label for="name">Product Name</label>
 <input type="text" id="name" name="name" placeholder="Product name" value="<%= product.name %>">
-    
+
+<label for="photos">Photos</label>
+<div class="mb-2">
+  <label class="w-24 h-24 cursor-pointer text-center flex items-center justify-center text-sm gap-1 text-gray-500 rounded-lg bg-gray-200">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+    </svg>    
+    <div>
+      Upload
+    </div>
+    <input type="file" name="photos" id="photos" class="hidden" multiple>
+  </label>
+  <% if (product.images.length === 0) { %>
+    <div>
+      No photos in this product.
+    </div>
+  <% } else { %>
+    <div class="mt-2">
+      <% product.images.forEach(image => { %>
+        <img src="<%= image %>" alt="Product Image" class="w-24 h-24 mr-2">
+      <% }); %>
+    </div>
+  <% } %>
+</div>
+
 <label for="description">Description</label>
 <textarea id="description" name="description" placeholder="Description" value="<%= product.description %>"><%= product.description %></textarea>
     
 <label for="price">Price (in USD)</label>
 <input type="number" id="price" name="price" placeholder="Price" value="<%= product.price %>">
+
+<script>
+  const fileInput = document.getElementById('photos');
+  const imagePaths = [];
+
+  fileInput.addEventListener('change', function(event) {
+    const files = event.target.files;
+    for (i = 0; i < files.length; i++) {
+      const file = files[i];
+      // Assuming you want to store the image file paths in an array
+      imagePaths.push(URL.createObjectURL(file));
+    }
+    console.log(imagePaths); // You can remove this line, it's just for testing
+  });
+</script>

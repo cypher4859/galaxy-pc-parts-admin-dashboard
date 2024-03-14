@@ -3,6 +3,22 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuth } = require('../middleware/auth');
 const Product = require('../models/Product');
+const multer = require('multer');
+const path = require('path');
+
+// Define storage for uploaded images
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads'); // Change the destination directory as per your requirement
+  },
+  filename: function (req, file, cb) {
+    const ext = path.extname(file.originalname);
+    cb(null, file.fieldname + '-' + Date.now() + ext);
+  },
+});
+
+// Initialize Multer with storage options
+const upload = multer({ storage: storage });
 
 // @desc    Products
 // @route   GET /
@@ -23,17 +39,21 @@ router.get('/new', ensureAuth, (req, res) => {
 
 // @desc    Create Product
 // @route   POST products/
-router.post('/', async (req, res) => {
+router.post('/', upload.array('photos', 5), async (req, res) => {
   const product = new Product({
     name: req.body.name,
     description: req.body.description,
     price: req.body.price,
+    images: req.files.map((file) => file.path), // Save file paths in the images array
   });
+
   try {
     const newProduct = await product.save();
     //res.redirect(`products/${newProduct.id}`);
+    // Redirect to the product listing page after successful creation
     res.redirect(`products`);
   } catch (err) {
+    // Handle database save errors
     res.render('products/new', {
       product: product,
       errorMessage: 'Error creating product',

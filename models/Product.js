@@ -13,6 +13,11 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  images: {
+    type: [String], // Array of strings representing image URLs or file paths
+    default: [],
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Product', productSchema);
