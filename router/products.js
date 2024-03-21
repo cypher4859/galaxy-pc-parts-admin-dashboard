@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuth } = require('../middleware/auth');
 const Product = require('../models/Product');
+const imageMimeTypes = ['imgae/jpeg', 'image/png', 'image/gif'];
 
 // @desc    Products
 // @route   GET /
@@ -47,13 +48,14 @@ router.get('/delete/:id', ensureAuth, async (req, res) => {
 
 // @desc    Create Product
 // @route   POST products/
-router.post('/', /* upload.array('photos', 5), */ ensureAuth, async (req, res) => {
+router.post('/', ensureAuth, async (req, res) => {
   const product = new Product({
     name: req.body.name,
     description: req.body.description,
     price: req.body.price,
-    // images: req.files.map((file) => file.path), // Save file paths in the images array
+    productImages: req.body.productImages,
   });
+  saveProduct(product, req.body.productImages);
 
   try {
     const newProduct = await product.save();
@@ -71,13 +73,14 @@ router.post('/', /* upload.array('photos', 5), */ ensureAuth, async (req, res) =
 
 // @desc    Update Products
 // @route   PUT products/:id
-router.put('/:id', /* upload.array('photos', 5), */ ensureAuth, async (req, res) => {
+router.put('/:id', ensureAuth, async (req, res) => {
   let product;
   try {
     product = await Product.findById(req.params.id);
     product.name = req.body.name;
     product.description = req.body.description;
     product.price = req.body.price;
+    product.productImages = req.body.productImages;
     // product.images = req.files.map((file) => file.path); // Save file paths in the images array
     await product.save();
     res.redirect(`/products`);
@@ -112,5 +115,14 @@ router.delete('/delete/:id', ensureAuth, async (req, res) => {
     }
   }
 });
+
+function saveProduct(product, productEncoded) {
+  if (productEncoded == null) return;
+  const productImage = JSON.parse(productEncoded);
+  if (product != null && imageMimeTypes.includes(productImage.type)) {
+    product.productImages = new Buffer.from(productImage.data, 'bse64');
+    product.productImages = productImage.type;
+  }
+}
 
 module.exports = router;

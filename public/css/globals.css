@@ -10,6 +10,10 @@ textarea {
   @apply mb-2;
 }
 
+.filepond {
+  @apply border-none;
+}
+
 input:focus,
 textarea:focus {
   @apply border-blue-900;

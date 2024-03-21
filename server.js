@@ -64,6 +64,7 @@ app.use(passport.session());
 app.use(methodOverride('_method'));
 
 // Serve folder
+app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public/uploads'));
 
