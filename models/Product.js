@@ -13,14 +13,15 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  productImages: {
+  //Product Image Schema
+  /* productImages: {
     type: [Buffer],
     required: true,
   },
   productImageType: {
     type: String,
     required: true,
-  },
+  }, */
 });
 
 productSchema.virtual('productImagesPath').get(function () {
