@@ -76,6 +76,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 app.use('/', require('./router/index'));
 app.use('/auth', require('./router/auth'));
 app.use('/products', require('./router/products'));
+app.use('/categories', require('./router/categories'));
 
 const PORT = process.env.PORT || 3000;
 
