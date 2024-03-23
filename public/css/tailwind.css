@@ -709,7 +709,8 @@ video {
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   border-radius: 0.375rem;
   border-width: 2px;

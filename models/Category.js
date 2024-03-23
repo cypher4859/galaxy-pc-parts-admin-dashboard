@@ -5,6 +5,9 @@ const categorySchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  parentCategory: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model('Category', categorySchema);

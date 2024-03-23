@@ -11,6 +11,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const flash = require('express-flash');
 
 // Load Config
 dotenv.config({ path: './config/config.env' });
@@ -62,6 +63,9 @@ app.use(passport.session());
 
 // Method Override Middleware
 app.use(methodOverride('_method'));
+
+// Express Flash Middleware
+app.use(flash());
 
 // Serve folder
 app.use(express.static('public'));
