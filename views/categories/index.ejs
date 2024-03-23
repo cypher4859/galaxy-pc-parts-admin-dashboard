@@ -1,8 +1,32 @@
-<!-- views/products/index.ejs -->
+<!-- views/categories/index.ejs -->
 <div class=" text-blue-900 mb-1">
   <h1 class="font-bold">Categories</h1>
 </div>
 <div class="mb-2">
-  <a href="/categories/new" class="btn-primary">Add new category</a>
+  <form action="/categories"  method="POST">
+    <label for="category-name">Category name</label>
+    <div class="flex gap-1 py-1">
+      <input class="mb-0" type="text" placeholder="Category name" id="category-name" name="name">
+      <button type="submit" class="btn-primary">Save</button>
+    </div>
+  </form>
 </div>
 <!-- Display all categories -->
+<table class="basic mt-2">
+  <thead>
+    <tr>
+      <td>Category Name</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% categories.forEach(category => { %>
+      <tr>
+        <td><%= category.name %></td>
+        <td>
+          <%- include('../partials/_deleteForm', { url: `/categories/delete/${category.id}` }) %>
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
