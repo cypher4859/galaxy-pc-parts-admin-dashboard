@@ -166,6 +166,7 @@ router.put('/:id', ensureAuth, async (req, res) => {
     category = await Category.findById(req.params.id);
     category.name = req.body.name;
     category.parentCategory = req.body.parentCategory;
+
     await category.save();
     res.redirect(`/categories`);
   } catch (error) {

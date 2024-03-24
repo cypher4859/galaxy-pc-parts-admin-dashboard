@@ -34,12 +34,21 @@ label {
   @apply text-blue-900;
 }
 
+.btn-primary,
+.btn-default,
+.btn-secondary {
+  @apply text-white px-4 py-1 rounded-md;
+}
+
 .btn-primary {
-  @apply bg-blue-900 text-white px-4 py-1 rounded-md;
+  @apply bg-blue-900;
 }
 
 .btn-secondary {
-  @apply bg-red-600 text-white px-4 py-1.5 rounded-md;
+  @apply bg-red-600;
+}
+.btn-default {
+  @apply bg-gray-500;
 }
 
 table.basic {

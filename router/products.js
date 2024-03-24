@@ -4,7 +4,6 @@ const router = express.Router();
 const { ensureAuth } = require('../middleware/auth');
 const Product = require('../models/Product');
 const Category = require('../models/Category');
-// const imageMimeTypes = ['imgae/jpeg', 'image/png', 'image/gif'];
 
 // @desc    Products
 // @route   GET /
@@ -64,13 +63,10 @@ router.post('/', ensureAuth, async (req, res) => {
     description: description,
     msrp: msrp,
     price: price,
-    // productImages: req.body.productImages,
   });
-  // saveProduct(product, req.body.productImages);
 
   try {
     const newProduct = await product.save();
-    //res.redirect(`products/${newProduct.id}`);
     // Redirect to the product listing page after successful creation
     res.redirect(`products`);
   } catch (err) {
@@ -90,13 +86,13 @@ router.put('/:id', ensureAuth, async (req, res) => {
   let product;
   try {
     product = await Product.findById(req.params.id);
+
     product.name = name;
     product.category = category;
     product.description = description;
     product.msrp = msrp;
     product.price = price;
-    // product.productImages = req.body.productImages;
-    // product.images = req.files.map((file) => file.path); // Save file paths in the images array
+
     await product.save();
     res.redirect(`/products`);
   } catch (err) {
@@ -130,14 +126,5 @@ router.delete('/delete/:id', ensureAuth, async (req, res) => {
     }
   }
 });
-
-/* function saveProduct(product, productEncoded) {
-  if (productEncoded == null) return;
-  const productImage = JSON.parse(productEncoded);
-  if (product != null && imageMimeTypes.includes(productImage.type)) {
-    product.productImages = new Buffer.from(productImage.data, 'bse64');
-    product.productImages = productImage.type;
-  }
-}; */
 
 module.exports = router;

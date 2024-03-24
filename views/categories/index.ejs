@@ -7,8 +7,8 @@
   <form action="/categories"  method="POST">
     <label for="category-name">New Category</label>
     <div class="flex gap-1 py-1">
-      <input class="mb-0" type="text" placeholder="Category name" id="category-name" name="name">
-      <select class="mb-0" name="parentCategory">
+      <input type="text" placeholder="Category name" id="category-name" name="name">
+      <select name="parentCategory">
         <option value="">No Parent Category</option>
         <% categories.forEach(category => { %>
           <option value="<%= category.id %>"><%= category.name %></option>

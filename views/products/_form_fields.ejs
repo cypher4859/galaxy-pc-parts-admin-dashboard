@@ -34,12 +34,6 @@
   </div>
 <% } %>
 
-<!-- Product Image File form input -->
-<!-- <div>
-  <label for="photos">Product Photos</label>
-  <input type="file" name="photos" id="photos" class="filepond" multiple>
-</div> -->
-
 <!-- Product Description form input -->
 <div>
   <label for="description">Description</label>
@@ -57,17 +51,3 @@
   <label for="price">Sale Price (in USD)</label>
   <input type="number" id="price" name="price" placeholder="Price" value="<%= product.price %>">
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Get a reference to the file input element
-    //const inputElement = document.querySelector('input[type="file"]');
-
-    // Create a FilePond instance
-    // const pond = FilePond.create(inputElement, {
-    //   imagePreviewHeight: 300, // Set the height of the image preview
-    //   imagePreviewWidth: 300,  // Set the width of the image preview
-
-    // });
-  });
-</script> 

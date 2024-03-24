@@ -551,6 +551,9 @@ video {
 .mt-2 {
   margin-top: 0.5rem;
 }
+.block {
+  display: block;
+}
 .flex {
   display: flex;
 }
@@ -679,6 +682,10 @@ video {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
 .font-bold {
   font-weight: 700;
 }
@@ -721,6 +728,14 @@ select {
   margin-bottom: 0.5rem;
 }
 
+input:focus,
+textarea:focus,
+select:focus {
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(30 58 138 / var(--tw-border-opacity));
+}
+
 .filepond {
   border-style: none;
 }
@@ -744,10 +759,10 @@ label {
   color: rgb(30 58 138 / var(--tw-text-opacity));
 }
 
-.btn-primary {
+.btn-primary,
+.btn-default,
+.btn-secondary {
   border-radius: 0.375rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 58 138 / var(--tw-bg-opacity));
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.25rem;
@@ -756,16 +771,18 @@ label {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.btn-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 58 138 / var(--tw-bg-opacity));
+}
+
 .btn-secondary {
-  border-radius: 0.375rem;
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.375rem;
-  padding-bottom: 0.375rem;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.btn-default {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 
 table.basic {
