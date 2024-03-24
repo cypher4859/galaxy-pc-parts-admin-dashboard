@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuth } = require('../middleware/auth');
 const Product = require('../models/Product');
+const Category = require('../models/Category');
 // const imageMimeTypes = ['imgae/jpeg', 'image/png', 'image/gif'];
 
 // @desc    Products
@@ -18,8 +19,13 @@ router.get('/', ensureAuth, async (req, res) => {
 
 // @desc    Add New Products
 // @route   GET products/new
-router.get('/new', ensureAuth, (req, res) => {
-  res.render('products/new', { product: new Product() });
+router.get('/new', ensureAuth, async (req, res) => {
+  try {
+    const categories = await Category.find();
+    res.render('products/new', { product: new Product(), categories: categories });
+  } catch (error) {
+    console.error('Cannot create new product');
+  }
 });
 
 // @desc    Edit Product Page
@@ -27,7 +33,8 @@ router.get('/new', ensureAuth, (req, res) => {
 router.get('/edit/:id', ensureAuth, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    res.render('products/edit', { product: product });
+    const categories = await Category.find({});
+    res.render('products/edit', { product: product, categories: categories });
   } catch (err) {
     console.error(err);
     res.redirect('/products');
@@ -49,10 +56,14 @@ router.get('/delete/:id', ensureAuth, async (req, res) => {
 // @desc    Create Product
 // @route   POST products/
 router.post('/', ensureAuth, async (req, res) => {
+  const { name, description, category, msrp, price } = req.body;
+
   const product = new Product({
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
+    name: name,
+    category: category,
+    description: description,
+    msrp: msrp,
+    price: price,
     // productImages: req.body.productImages,
   });
   // saveProduct(product, req.body.productImages);
@@ -74,12 +85,16 @@ router.post('/', ensureAuth, async (req, res) => {
 // @desc    Update Products
 // @route   PUT products/:id
 router.put('/:id', ensureAuth, async (req, res) => {
+  const { name, description, category, msrp, price } = req.body;
+
   let product;
   try {
     product = await Product.findById(req.params.id);
-    product.name = req.body.name;
-    product.description = req.body.description;
-    product.price = req.body.price;
+    product.name = name;
+    product.category = category;
+    product.description = description;
+    product.msrp = msrp;
+    product.price = price;
     // product.productImages = req.body.productImages;
     // product.images = req.files.map((file) => file.path); // Save file paths in the images array
     await product.save();

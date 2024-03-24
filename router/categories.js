@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuth } = require('../middleware/auth');
 const Category = require('../models/Category');
+const Product = require('../models/Product');
 
 // @desc    Categories
 // @route   GET /
@@ -35,10 +36,7 @@ router.get('/', ensureAuth, async (req, res) => {
 router.get('/edit/:id', ensureAuth, async (req, res) => {
   try {
     const category = await Category.findById(req.params.id);
-    console.log('Category:', category); // Add this line
-    // const categories = await Category.find({ _id: { $ne: category._id } });
     const allCategories = await Category.find();
-    console.log('All Categories:', allCategories); // Add this line
 
     // Function to check if a category is an ancestor of another category
     const isAncestor = (category, potentialAncestor) => {
@@ -177,10 +175,18 @@ router.put('/:id', ensureAuth, async (req, res) => {
   }
 });
 
-// @desc    Delete Products
-// @route   DELETE products/:id/delete
+// @desc    Delete Categories
+// @route   DELETE categories/:id/delete
 router.delete('/delete/:id', ensureAuth, async (req, res) => {
   try {
+    // Check if any products are associated with the category to be deleted
+    const productsWithCategory = await Product.find({ category: req.params.id });
+    if (productsWithCategory.length > 0) {
+      // If products are associated with the category, render an error message to the user
+      req.flash('error', 'Cannot delete category associated with products.');
+      return res.redirect('/categories'); // Redirect to appropriate page
+    }
+
     // Check if any child categories exist for the parent category to be deleted
     const childCategories = await Category.find({ parentCategory: req.params.id });
     if (childCategories.length > 0) {
