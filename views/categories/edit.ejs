@@ -1,0 +1,42 @@
+<!-- views/categories/edit.ejs -->
+
+<div>
+  <h1 class="font-bold">Edit Category</h1>
+  <div class="flex-col">
+    <table class="basic mt-2">
+      <thead>
+        <tr>
+          <td>Category Name</td>
+          <td>Parent Category</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= category.name %></td>
+          <td>
+            <% if (category.parentCategory) { %>
+              <%= categoryNamesById[category.parentCategory] %>
+            <% } else { %>
+              No Parent Category
+            <% } %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <form action="/categories/<%= category.id %>?_method=PUT" method="POST">
+      <div class="flex gap-1 py-1">
+        <input class="mb-0" type="text" placeholder="Category name" id="category-name" name="name" value="<%= category.name %>">
+        <select class="mb-0" name="parentCategory">
+          <option value="">No Parent Category</option>
+          <% categories.forEach(category => { %>
+            <option value="<%= category.id %>" <%= category.id.toString() === parentId ? 'selected' : '' %>><%= category.name %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="flex-row">
+        <a href="/categories" class="btn-secondary">Cancel</a>
+        <button type="submit" class="btn-primary" type="submit">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
