@@ -35,16 +35,46 @@ router.get('/', ensureAuth, async (req, res) => {
 router.get('/edit/:id', ensureAuth, async (req, res) => {
   try {
     const category = await Category.findById(req.params.id);
-    const categories = await Category.find({ _id: { $ne: category._id } });
+    console.log('Category:', category); // Add this line
+    // const categories = await Category.find({ _id: { $ne: category._id } });
     const allCategories = await Category.find();
+    console.log('All Categories:', allCategories); // Add this line
+
+    // Function to check if a category is an ancestor of another category
+    const isAncestor = (category, potentialAncestor) => {
+      if (!category || !category.parentCategory) {
+        return false;
+      } else if (potentialAncestor && category.parentCategory === potentialAncestor._id.toString()) {
+        return true;
+      } else {
+        const parentCategory = allCategories.find((cat) => cat._id.toString === category.parentCategory);
+        return isAncestor(parentCategory, potentialAncestor);
+      }
+    };
+
+    // Filter out categories that are descendants of the category being edited
+    // Also filter out the category being edited to prevent setting itself as parent
+    const categories = allCategories.filter(
+      (cat) => cat._id.toString() !== category._id.toString() && !isAncestor(category, cat)
+    );
+
+    // Find the parent category ID of the current category
+    const parentId = category.parentCategory ? category.parentCategory.toString() : null;
+
+    // If the parent category of the current category is already selected as its parent,
+    // add it to the list of categories
+    if (parentId && !categories.some((cat) => cat._id.toString() === category.parentCategory)) {
+      const parentCategory = await Category.findById(category.parentCategory);
+      if (parentCategory) {
+        categories.push(parentCategory);
+      }
+    }
+
     // Map category IDs to category names
     const categoryNamesById = allCategories.reduce((acc, category) => {
       acc[category._id.toString()] = category.name;
       return acc;
     }, {});
-
-    // Find the parent category ID of the current category
-    const parentId = category.parentCategory ? category.parentCategory.toString() : null;
 
     res.render('categories/edit', {
       category: category,
