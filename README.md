@@ -61,3 +61,14 @@ I am aware that the Google Client ID and Client Secret are visible in the code a
 ```
 
 7. Now that our web server has started running, go to your browser and type http://localhost:3000/ in the address bar to visit the project.
+
+## Future Features
+
+If I continue to work on this project, these are some features I hope to include:
+
+- Product Image Upload.
+- Property Creation for Categories (example: Storage Capacity, Core Count, Etc).
+- Admin account management so only authorized users can access the dashboard.
+- Connect to a costmer-facing storefront.
+
+## Dakota Riley, Code Louisville, 2024.
