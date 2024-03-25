@@ -71,4 +71,10 @@ If I continue to work on this project, these are some features I hope to include
 - Admin account management so only authorized users can access the dashboard.
 - Connect to a costmer-facing storefront.
 
+## Updated project plan
+
+The originaly project plan included 2 seperate sites that were to be built, a storefront where a user could shop for computer parts, and an admin dashboard where products could be managed. Due to time constraints and other outside factors, I could not complete the full vision of the project in the alloted time.
+
+Because of this reduction in scope, I focused on creating the admin dashboard. Despite the reduction in scope, I was still able to create a project that meets all requirments and goes above and beyond the minimum number of features required. Linked below is my updated project plan which reflects the work I completed for this project.
+
 ## Dakota Riley, Code Louisville, 2024.
