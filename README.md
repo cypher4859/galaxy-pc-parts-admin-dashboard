@@ -70,6 +70,9 @@ If I continue to work on this project, these are some features I hope to include
 - Property Creation for Categories (example: Storage Capacity, Core Count, Etc).
 - Admin account management so only authorized users can access the dashboard.
 - Connect to a costmer-facing storefront.
+- Close Button for the mobile nav menu
+- Dynamically changing the page layout when resizing the window from mobile to desktop without forcing a refresh.
+- And More...
 
 ## Updated Project Plan
 
