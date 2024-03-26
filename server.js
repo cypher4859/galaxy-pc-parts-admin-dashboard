@@ -81,6 +81,8 @@ app.use('/', require('./router/index'));
 app.use('/auth', require('./router/auth'));
 app.use('/products', require('./router/products'));
 app.use('/categories', require('./router/categories'));
+app.use('/orders', require('./router/orders'));
+app.use('/settings', require('./router/settings'));
 
 const PORT = process.env.PORT || 3000;
 
