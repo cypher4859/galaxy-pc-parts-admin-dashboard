@@ -71,7 +71,7 @@ If I continue to work on this project, these are some features I hope to include
 - Admin account management so only authorized users can access the dashboard.
 - Connect to a costmer-facing storefront.
 
-## Updated project plan
+## Updated Project Plan
 
 The originaly project plan included 2 seperate sites that were to be built, a storefront where a user could shop for computer parts, and an admin dashboard where products could be managed. Due to time constraints and other outside factors, I could not complete the full vision of the project in the alloted time.
 

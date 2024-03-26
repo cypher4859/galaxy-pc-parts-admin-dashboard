@@ -78,3 +78,9 @@ table.basic a {
 .btn-cancel {
   @apply bg-blue-900;
 }
+
+@media (max-width: 600px) {
+  .navbar {
+    display: none;
+  }
+}

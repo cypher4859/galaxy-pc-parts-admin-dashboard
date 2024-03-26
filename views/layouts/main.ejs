@@ -19,9 +19,11 @@
     <script defer src="/public/javascript/fileUpload.js"></script> -->
 </head>
 <body>
-    <div class="container">
+    <div id="container">
         <div class="bg-blue-900 min-h-screen w-screen flex">
-            <%- include('../partials/_nav') %>
+            <div id="navMenu">
+                <%- include('../partials/_nav') %>
+            </div>
             <div class="bg-white flex-grow mt-2 mr-2 mb-2 rounded-lg p-4">
                 <%- include('../partials/_errorMessage') %>
                 <%- body %>
@@ -29,4 +31,70 @@
         </div>
     </div>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container= document.getElementById('container');
+
+        const viewportWidth =  window.innerWidth || document.documentElement.clientWidth;
+
+        if (viewportWidth < 600) {
+            const button = document.createElement('button');
+
+            // Create SVG element
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            svg.setAttribute("viewBox", "0 0 24 24");
+            svg.setAttribute("stroke-width", "1.5");
+            svg.setAttribute("stroke", "currentColor");
+            svg.setAttribute("class", "w-8 h-8");
+
+            // Create path element
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("stroke-linecap", "round");
+            path.setAttribute("stroke-linejoin", "round");
+            path.setAttribute("d", "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5");
+
+            // Append path to SVG
+            svg.appendChild(path);
+
+            // Append SVG to button
+            button.appendChild(svg);
+
+            button.appendChild = svg;
+            button.type = 'button';
+            button.id = 'toggleNav';
+            button.classList.add('p-2');
+
+            container.insertBefore(button, container.firstChild); 
+
+            container.classList.add('bg-blue-900', 'min-h-screen');
+
+            const toggleNav = document.getElementById('toggleNav');
+            const navMenu = document.getElementById('navMenu');
+
+            toggleNav.classList.add('text-white');
+
+            navbar.classList.add('fixed');
+
+            toggleNav.addEventListener('click', () => {
+                navMenu.classList.toggle('hidden');
+                if (navMenu.classList.contains('hidden')) {
+                    navbar.classList.remove('-top-0');
+                    navbar.classList.add('-left-full');
+                    navbar.classList.remove('w-full');
+                    navbar.classList.remove('-left-0');
+                } else {
+                    navbar.classList.add('w-full');
+                    navbar.classList.add('-left-0');
+                    navbar.classList.add('-top-0');
+                    navbar.classList.remove('-left-full');
+                }
+            });
+
+            // Initially hide the navMenu on load
+            navMenu.classList.add('hidden');
+        }
+    });
+</script>
 </html>
