@@ -30,6 +30,8 @@ I used Passport.js and Google Cloud Auth to authenticate a user with a Google Ac
 
 I am aware that the Google Client ID and Client Secret are visible in the code and that this is typically frowned upon. This is currently required to function and for the purposes of this project will remain as part of the code. I would like to continue with this project after class ends and will likely move this over to a hosting service so that I can hide the ENV file and make it easier for anyone to view this project without locally hosting it in the future.
 
+When viewing the website and changing the size to a mobile layout and vice versa, a refresh is needed to to get the UI to display properly for the format you are trying to test.
+
 ## 🛠 To run locally:
 
 1. Clone this repository using your Terminal (Mac and Linux) or Command Prompt (Windows).
