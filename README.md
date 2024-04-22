@@ -1,4 +1,4 @@
-# Computer Parts Store (Admin Page)
+# Galaxy PC Parts- Admin Dashboard
 
 ## About
 
