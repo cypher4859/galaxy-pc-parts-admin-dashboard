@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  computerpartsstoreadmin:
+    image: computerpartsstoreadmin
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=dakotar1234
+      - MONGO_INITDB_ROOT_PASSWORD=dakotar1234

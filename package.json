@@ -31,11 +31,11 @@
     "morgan": "^1.10.0",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
+    "cross-env": "^7.0.3",
     "session": "^0.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.18",
-    "cross-env": "^7.0.3",
     "nodemon": "^3.1.0",
     "postcss": "^8.4.35",
     "postcss-cli": "^11.0.0",
