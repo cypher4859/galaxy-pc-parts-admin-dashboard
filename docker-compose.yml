@@ -2,10 +2,7 @@ version: '3.4'
 
 services:
   computerpartsstoreadmin:
-    image: computerpartsstoreadmin
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    image: cypher4859/galaxy-computer-parts
     environment:
       NODE_ENV: production
     ports:
